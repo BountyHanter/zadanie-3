@@ -7,7 +7,17 @@
 #include <set>
 
 using namespace std;
-
+class mine
+{
+public:
+	int a;
+	bool operator == (const mine& other)
+	{
+		if (this->a == other.a)
+			return true;
+		else return false;
+	}
+};
 template <typename T1, typename T2> 
 auto max2(T1 a, T2 b) 
 {
