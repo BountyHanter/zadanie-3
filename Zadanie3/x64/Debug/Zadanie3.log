@@ -1,2 +1,6 @@
 ﻿  Zadanie3.cpp
-  Zadanie3.vcxproj -> C:\Users\Denis\Desktop\Учеба\программы 2 курс\Zadanie3\x64\Debug\Zadanie3.exe
+C:\Users\Denis\Desktop\Учеба\программы 2 курс\zadanie-3\Zadanie3\Zadanie3.cpp(191,21): warning C4305: инициализация: усечение из "double" в "float"
+C:\Users\Denis\Desktop\Учеба\программы 2 курс\zadanie-3\Zadanie3\Zadanie3.cpp(191,38): warning C4305: инициализация: усечение из "double" в "float"
+C:\Users\Denis\Desktop\Учеба\программы 2 курс\zadanie-3\Zadanie3\Zadanie3.cpp(252,28): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Denis\Desktop\Учеба\программы 2 курс\zadanie-3\Zadanie3\Zadanie3.cpp(255,28): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  Zadanie3.vcxproj -> C:\Users\Denis\Desktop\Учеба\программы 2 курс\zadanie-3\x64\Debug\Zadanie3.exe
