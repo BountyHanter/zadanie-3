@@ -90,7 +90,7 @@ void findMap(map<T1, T2> argument1, T3 a)
 	if (it != book.end())
 		cout << "value with key " <<" \" " << it->first << " \" " << " is - " << it->second;
 	else
-		cout << "value with key " << a << " not found";
+		cout << "value with key " << a << " not found\n";
 }
 template <typename T1, typename T2, typename T3, typename T4> // кстати ввожу с ключами разных типов !!! СПРОСИТЬ ЕСЛИ ЗНАЧЕНИЯ РАЗНЫХ ТИПОВ
 void findUniq(map<T1, T2> argument1, map<T3, T4> argument2) // здесь так же переписываем,и все шо я придумал, это сравниваеть первый со вторым, выписывая уникальные из первого, потом наоборот
@@ -129,7 +129,7 @@ void findUniq(map<T1, T2> argument1, map<T3, T4> argument2) // здесь так
 
 }
 template <typename T1>
-void averageINDX(T1 a, int size) // проблема в том что нужно универсальное определение размера и для строки и для массива
+void averageINDX(T1 a, int size)
 {
 	double c = 0;
 	int i;
@@ -143,7 +143,7 @@ void averageINDX(T1 a, int size) // проблема в том что нужно
 template <typename T1>
 void averageIT(vector<T1> a)
 {
-	T1 book = a;
+	vector<T1> book = a;
 	size_t size = a.size();
 	double average = 0;
 	for (auto it = book.begin(); it != book.end(); it++)
@@ -207,7 +207,7 @@ int main()
 	cout << "vector\n";
 	masINDX(vec, 6);
 	cout << "string \n";
-	string str = "1234567";
+	string str = "abcdefg";
 	masINDX(str, 6);
 	cout << "______________________\n";
 	cout << "zadanie3 \n______________________\n";
@@ -217,7 +217,7 @@ int main()
 	cout << "string\n";
 	iter(str);
 	cout << endl;
-	cout << "set::set\n";
+	cout << "set\n";
 	set<int> mySet = { 1,2,3,4,5,6,7 };
 	iter(mySet);
 	cout << endl;
@@ -252,9 +252,21 @@ int main()
 	cout << "average string\n";
 	averageINDX(str,str.size());
 	cout << endl;
-	cout << "average vector";
+	cout << "average vector\n";
 	averageINDX(vec,vec.size());
 	cout << endl;
+	cout << "______________________\n";
+	cout << "zadanie8 \n______________________\n";
+	cout << "vector\n";
+	averageIT(vec);
+	cout << endl;
+	cout << "string\n";
+	averageIT(str);
+	cout << endl;
+	cout << "set\n";
+	averageIT(mySet);
+
+
 
 
 
