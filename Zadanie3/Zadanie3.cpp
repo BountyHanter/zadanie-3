@@ -18,47 +18,43 @@ public:
 		else return false;
 	}
 };
-template <typename T1, typename T2> 
-auto max2(T1 a, T2 b) 
+template <typename T1> 
+T1 max2(const T1& a,const T1& b) 
 {
 	return (a > b) ? a : b;
 }
-template <typename T1, typename T2, typename T3>
-auto max3(T1 a, T2 b, T3 c)
+template <typename T1>
+T1 max3(const T1& a,const T1& b,const T1& c)
 {
-	if (a > b)
-		return (a > c) ? a : c;
-	else
-		return (b > c) ? b : c;
+	return max2(max2(a, b),c);
 }
 template <typename T1> // подходит и для чисел и для строки и для вектора, вывод по индексу 
-void masINDX(T1 a, int size1) 
+void masINDX(const T1& a, int size1) 
 { // получаем размер контейнера с индексами для счётчика
-	for (int i = 0;i <= 6;i++) // выводим элементы из контейнера а по индексам которые хранятся в контейнере б
+	for (int i = 0;i != size1;++i) // выводим элементы из контейнера а по индексам которые хранятся в контейнере б
 	{
 		cout << a[i]<<"\n";
 	}
 }
 template <typename T1>
-void iter(vector <T1> a)
+void iter(const T1& list)
 {
-	vector<T1> book = a;
-	for (auto it = book.begin(); it != book.end(); it++)
+	for (auto it = list.begin(); it !=list.end(); it++)
 	{
 
 		cout << *it << " ";
 	}
 }
-template <typename T1>
-void iter(set <T1> a)
-{
-	set<T1> book = a;
-	for (auto it = book.begin(); it != book.end(); it++)
-	{
-
-		cout << *it << " ";
-	}
-}
+//template <typename T1>
+//void iter(set <T1> a)
+//{
+//	set<T1> book = a;
+//	for (auto it = book.begin(); it != book.end(); it++)
+//	{
+//
+//		cout << *it << " ";
+//	}
+//}
 template <typename T1>
 void iter(T1 a)
 {
@@ -72,62 +68,77 @@ void iter(T1 a)
 template <typename T1, typename T2>
 void map1(map<T1, T2> argument1) // переписываем внутрь функции контейнер, создаем итератор и проходимся по контейнеру
 {
-	map<T1, T2> book = argument1;
-	typename map<T1, T2>::iterator it = book.begin();
-	for (; it != book.end(); it++)
+	typename map<T1, T2>::iterator it = argument1.begin();
+	for (; it != argument1.end(); it++)
 	{
 		cout << it->first << " " << it->second << "\n";
 	}
+	/*for (const auto &iter: argument1)
+		cout << it.first << " " << it.second << "\n";
+	for (auto iter = argument1.begin(); it != argument1.end(); it++)
+		cout << it->first << " " << it->second << "\n";*/
 
 	
 }
 template <typename T1, typename T2, typename T3>
 void findMap(map<T1, T2> argument1, T3 a)
 {
-	map<T1, T2> book = argument1; // переписываем как в предыдущем, используем поиск через итератор и выводим то что нужно
+	//map<T1, T2> book = argument1; // переписываем как в предыдущем, используем поиск через итератор и выводим то что нужно
 	typename map<T1, T2>::iterator it;
-	it = book.find(a);
-	if (it != book.end())
+	it = argument1.find(a);
+	if (it != argument1.end())
 		cout << "value with key " <<" \" " << it->first << " \" " << " is - " << it->second;
 	else
 		cout << "value with key " << a << " not found\n";
 }
-template <typename T1, typename T2, typename T3, typename T4> // кстати ввожу с ключами разных типов !!! СПРОСИТЬ ЕСЛИ ЗНАЧЕНИЯ РАЗНЫХ ТИПОВ
-void findUniq(map<T1, T2> argument1, map<T3, T4> argument2) // здесь так же переписываем,и все шо я придумал, это сравниваеть первый со вторым, выписывая уникальные из первого, потом наоборот
-{
-	map<T1, T2>book = argument1;
-	map<T3, T4>book2 = argument2;
-	int n = 0;
-	typename map<T1, T2>::iterator it = book.begin();
-	typename map<T3, T4>::iterator it2 = book2.begin();
-	for (; it != book.end(); it++)
-	{
-		n = 0;
-		it2 = book2.begin();
-		for (; it2 != book2.end(); it2++)
-		{
-			if (it->second != it2->second)
-				n++;
-		}
-		if(n==book.size()) // тут если счётчик равен размеру массива, значит похожих элементов не нашлось, и значит выводим элемент ( тут вывожу и ключ и значение )
-			cout << it->first << " " << it->second << " ";
-	}
-	it = book.begin();
-	it2 = book2.begin();
-	for (; it2 != book2.end(); it2++)
-	{
-		n = 0;
-		it = book.begin();
-		for (; it != book.end(); it++)
-		{
-			if (it2->second != it->second)
-				n++;
-		}
-		if (n == book2.size())
-			cout << it2->first << " " << it2->second << " ";
-	}
+template <typename T1, typename T2> // кстати ввожу с ключами разных типов !!! СПРОСИТЬ ЕСЛИ ЗНАЧЕНИЯ РАЗНЫХ ТИПОВ
+void findUniq(map<T1, T2> argument1, map<T1, T2> argument2) // здесь так же переписываем,и все шо я придумал, это сравниваеть первый со вторым, выписывая уникальные из первого, потом наоборот
 
-}
+	//int n = 0;
+	//typename map<T1, T2>::iterator it = book.begin();
+	//typename map<T1, T2>::iterator it2 = book2.begin();
+	//for (; it != book.end(); it++)
+	//{
+	//	n = 0;
+	//	it2 = book2.begin();
+	//	for (; it2 != book2.end(); it2++)
+	//	{
+	//		if (it->second != it2->second)
+	//			n++;
+	//	}
+	//	if(n==book.size()) // тут если счётчик равен размеру массива, значит похожих элементов не нашлось, и значит выводим элемент ( тут вывожу и ключ и значение )
+	//		cout << it->first << " " << it->second << " ";
+	//}
+	//it = book.begin();
+	//it2 = book2.begin();
+	//for (; it2 != book2.end(); it2++)
+	//{
+	//	n = 0;
+	//	it = book.begin();
+	//	for (; it != book.end(); it++)
+	//	{
+	//		if (it2->second != it->second)
+	//			n++;
+	//	}
+	//	if (n == book2.size())
+	//		cout << it2->first << " " << it2->second << " ";
+	//}
+	{
+		map<T1 T2> result;
+		for (const auto& iter : argument1)
+		{
+			auto find_iter = argument2.find(iter.first);
+			if (find_iter == argument2.end())
+				result[iter.first] = iter.second;
+		}
+		for (const auto& iter : argument2)
+		{
+			auto find_iter = argument1.find(iter.first);
+			if (find_iter == argument1.end())
+				result[iter.first] = iter.second;
+		}
+		}
+
 template <typename T1>
 void averageINDX(T1 a, int size)
 {
@@ -143,7 +154,6 @@ void averageINDX(T1 a, int size)
 template <typename T1>
 void averageIT(vector<T1> a)
 {
-	vector<T1> book = a;
 	size_t size = a.size();
 	double average = 0;
 	for (auto it = book.begin(); it != book.end(); it++)
@@ -153,19 +163,19 @@ void averageIT(vector<T1> a)
 	average = average / size;
 	cout << average;
 }
-template <typename T1>
-void averageIT(set<T1> a)
-{
-	set<T1> book = a;
-	size_t size = a.size();
-	double average = 0;
-	for (auto it = book.begin(); it != book.end(); it++)
-	{
-		average += *it;
-	}
-	average = average / size;
-	cout << average;
-}
+//template <typename T1>
+//void averageIT(set<T1> a)
+//{
+//	set<T1> book = a;
+//	size_t size = a.size();
+//	double average = 0;
+//	for (auto it = book.begin(); it != book.end(); it++)
+//	{
+//		average += *it;
+//	}
+//	average = average / size;
+//	cout << average;
+//}
 template <typename T1>
 void averageIT( T1 a)
 {
@@ -182,13 +192,16 @@ void averageIT( T1 a)
 int main()
 {
 	cout << "zadanie1 \n______________________\n";
-	double int1 = 5.92, int2 = 9.009, int3 = 20.921228;
-	auto maxduble = max3(int1, int2, int3);
+	double double1 = 5.92, double2 = 9.009, double3 = 20.921228;
+	cout << "double1 = " << double1 << " double2 = " << double2 << " double3 = " << double3 << endl;
+	auto maxduble = max3(double1, double2, double3);
 	cout << "max3 double = " << maxduble << "\n";
 	char char1 = 'a', char2 = 'b', char3 = 'c';
+	cout << "char1 - " << char1 << " char2 - " << char2 << " char3 - " << char3 << endl;
 	auto maxChar = max3(char1, char2, char3);
 	cout << "max char = " << maxChar << "\n";
 	float float1 = 9.99, float2 = 0.9993;
+	cout << "float1 = " << float1 << " float2 = " << float2 << endl;
 	auto maxFloat = max2(float1, float2);
 	cout << "max float = " << maxFloat << "\n";
 	mine my1;
@@ -202,13 +215,13 @@ int main()
 	int masIndx[7] = {0,1,2,3,4,5,6};
 	double masDuble[7] = { 1.1,2.22,3.33,4.44,5.55,6.66,7.77 };
 	cout << "array\n";
-	masINDX(masDuble,7);
+	masINDX(masIndx,7);
 	vector<int> vec = { 1,2,3,4,5,6,7 };
 	cout << "vector\n";
-	masINDX(vec, 6);
+	masINDX(vec,vec.size());
 	cout << "string \n";
 	string str = "abcdefg";
-	masINDX(str, 6);
+	masINDX(str, str.size());
 	cout << "______________________\n";
 	cout << "zadanie3 \n______________________\n";
 	cout << "vector\n";
@@ -265,6 +278,7 @@ int main()
 	cout << endl;
 	cout << "set\n";
 	averageIT(mySet);
+	cout << "\n______________________\n";
 
 
 
